@@ -1,0 +1,22 @@
+ide-diff
+Copyright 2026 the ide-diff contributors
+
+This product is a port of parts of JetBrains IntelliJ Platform
+("intellij-community", https://github.com/JetBrains/intellij-community),
+Copyright 2000-2026 JetBrains s.r.o. and contributors,
+licensed under the Apache License, Version 2.0.
+
+Portions derived from intellij-community include:
+  - Diff and merge algorithms ported from platform/util/diff
+    (com.intellij.diff.comparison.*, com.intellij.diff.fragments.*).
+  - Diff viewer behaviour and rendering ported from platform/diff-impl and platform/diff-api
+    (com.intellij.diff.tools.*, com.intellij.diff.util.*, com.intellij.openapi.diff.*).
+  - Color values taken from the bundled color schemes and themes in
+    platform/platform-resources/src (DefaultColorSchemesManager.xml, themes/expUI/*, themes/islands/*).
+  - SVG icons copied from platform/icons/src/expui/** into packages/viewer/src/icons/svg/.
+
+You may obtain a copy of the Apache License, Version 2.0 at
+  http://www.apache.org/licenses/LICENSE-2.0
+
+JetBrains, IntelliJ IDEA and PhpStorm are trademarks of JetBrains s.r.o.
+This project is not affiliated with or endorsed by JetBrains.

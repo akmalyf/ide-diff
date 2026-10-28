@@ -1,0 +1,6 @@
+html, body { margin: 0; height: 100%; }
+body { display: flex; flex-direction: column; background: #26282c; font: 13px Inter, system-ui, sans-serif; color: #d1d3d9; }
+body.light { background: #e9eaee; color: #000; }
+.controls { display: flex; gap: 16px; align-items: center; padding: 8px 12px; flex: none; }
+.controls select, .controls button { font: inherit; }
+#app { flex: 1; min-height: 0; margin: 0 6px 6px; border-radius: 10px; overflow: hidden; }

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ide-diff playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="controls">
+      <strong>ide-diff</strong>
+      <label>Sample <select id="sample"></select></label>
+      <label>Theme
+        <select id="theme"><option value="dark">Islands Dark</option><option value="light">Islands Light</option></select>
+      </label>
+      <label><input type="checkbox" id="titles" checked /> Titles</label>
+      <button id="dump">Log modified</button>
+    </header>
+    <main id="app"></main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
