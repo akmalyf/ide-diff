@@ -1,3 +1,7 @@
 packages:
   - packages/*
   - playground
+
+# vsce-sign's postinstall is only needed for signed publishing; packaging works without it
+allowBuilds:
+  '@vscode/vsce-sign': false

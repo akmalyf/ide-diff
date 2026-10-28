@@ -1,0 +1,7 @@
+# Ship only dist/, package.json, README.md and NOTICE.
+**
+!dist/extension.cjs
+!dist/webview.js
+!package.json
+!README.md
+!NOTICE

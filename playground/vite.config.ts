@@ -9,7 +9,9 @@ export default defineConfig({
     alias: {
       '@ide-diff/core': src('../packages/core/src/index.ts'),
       '@ide-diff/viewer': src('../packages/viewer/src/index.ts'),
+      '@ide-diff/react': src('../packages/react/src/index.ts'),
     },
   },
   server: { port: 5173 },
+  build: { rollupOptions: { input: { main: src('index.html'), react: src('react.html') } } },
 });
