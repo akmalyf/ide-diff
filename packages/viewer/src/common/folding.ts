@@ -73,11 +73,11 @@ export const foldTheme = EditorView.baseTheme({
     backgroundColor: 'var(--idd-diff-separator-wave)',
     maskImage: waveMask(1),
     maskRepeat: 'repeat-x',
-    maskPosition: '0 center',
+    maskPosition: 'var(--idd-wave-x, 0px) center',
     maskSize: '16px 8px',
     WebkitMaskImage: waveMask(1),
     WebkitMaskRepeat: 'repeat-x',
-    WebkitMaskPosition: '0 center',
+    WebkitMaskPosition: 'var(--idd-wave-x, 0px) center',
     WebkitMaskSize: '16px 8px',
   },
   '.idd-fold:hover::before, .idd-fold-gutter.idd-hover::before': {
@@ -86,6 +86,17 @@ export const foldTheme = EditorView.baseTheme({
   },
   '.idd-fold-gutter': { position: 'relative' },
 });
+
+/**
+ * Anchors the wave phase of every fold separator (content widget and gutter cells) under `root` to the viewport, so the
+ * pieces join into one continuous wave across gutters and dividers (see the dividers' wavePath).
+ */
+export function alignWaves(root: HTMLElement): void {
+  for (const el of root.querySelectorAll<HTMLElement>('.idd-fold, .idd-fold-gutter')) {
+    const phase = `${-(((el.getBoundingClientRect().left % 16) + 16) % 16)}px`;
+    if (el.style.getPropertyValue('--idd-wave-x') !== phase) el.style.setProperty('--idd-wave-x', phase);
+  }
+}
 
 export class FoldWidget extends WidgetType {
   constructor(

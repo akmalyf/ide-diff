@@ -7,7 +7,7 @@ import { compareTexts, getDiffType, type LineFragment } from '@ide-diff/core';
 import type { DiffViewer, DiffViewerOptions } from '../types';
 import { injectStyles } from '../theme/styles';
 import { diffDecorations, setSideChanges, type SideChange } from '../common/decorations';
-import { computeFoldGroups, setFolds, unchangedFolding, type FoldGroup, type FoldRegion } from '../common/folding';
+import { alignWaves, computeFoldGroups, setFolds, unchangedFolding, type FoldGroup, type FoldRegion } from '../common/folding';
 import { OverlayScrollbar, type StripeMark } from '../common/scrollbar';
 import { applyModification, lineStart } from '../common/lines';
 import { baseEditorExtensions, readOnlyExtension } from '../common/editorBase';
@@ -458,6 +458,7 @@ export class UnifiedDiffViewer implements DiffViewer {
     this.paintFrame = requestAnimationFrame(() => {
       this.paintFrame = 0;
       this.scrollbar.update();
+      alignWaves(this.root);
     });
   }
 

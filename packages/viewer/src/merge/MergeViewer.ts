@@ -5,7 +5,7 @@ import { Compartment, EditorState, Text, Transaction, type Extension } from '@co
 import { EditorView, highlightWhitespace, keymap, type ViewUpdate } from '@codemirror/view';
 import { DiffTooBigError, type ComparisonPolicy, type HighlightPolicy, type IgnorePolicy } from '@ide-diff/core';
 import { baseEditorExtensions, readOnlyExtension } from '../common/editorBase';
-import { setFolds, unchangedFolding, type FoldRegion } from '../common/folding';
+import { alignWaves, setFolds, unchangedFolding, type FoldRegion } from '../common/folding';
 import { sideLineNumbers } from '../common/lineNumbers';
 import { lineStart } from '../common/lines';
 import { OverlayScrollbar, type StripeMark } from '../common/scrollbar';
@@ -597,6 +597,7 @@ export class TextMergeViewer implements MergeViewer {
     const [v0, v1, v2] = this.views;
     this.dividers[0].paint(v0, v1, this.dividerItems[0], this.dividerFolds(0, 1));
     this.dividers[1].paint(v1, v2, this.dividerItems[1], this.dividerFolds(1, 2));
+    alignWaves(this.root);
     this.scrollbars.forEach((s) => s.update());
   }
 

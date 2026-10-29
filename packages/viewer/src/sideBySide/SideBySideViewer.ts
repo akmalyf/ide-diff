@@ -7,7 +7,7 @@ import type { DiffViewer, DiffViewerOptions } from '../types';
 import { injectStyles } from '../theme/styles';
 import { diffDecorations, setSideChanges, type SideChange } from '../common/decorations';
 import { sideLineNumbers } from '../common/lineNumbers';
-import { computeFoldGroups, setFolds, unchangedFolding, type FoldGroup, type FoldRegion } from '../common/folding';
+import { alignWaves, computeFoldGroups, setFolds, unchangedFolding, type FoldGroup, type FoldRegion } from '../common/folding';
 import { OverlayScrollbar } from '../common/scrollbar';
 import { applyModification, appendModification, lineStart } from '../common/lines';
 import { baseEditorExtensions, readOnlyExtension } from '../common/editorBase';
@@ -357,6 +357,7 @@ export class SideBySideDiffViewer implements DiffViewer {
   private paint(): void {
     const [v1, v2] = this.views;
     this.divider.paint(v1, v2, this.dividerChanges(), this.dividerFolds());
+    alignWaves(this.root);
     this.scrollbars[0].update();
     this.scrollbars[1].update();
   }

@@ -58,15 +58,17 @@ export class MergeDivider {
       // DividerPolygon.paint
       let sY1: number, eY1: number, sY2: number, eY2: number;
       if (end1 - start1 < 2) {
-        sY1 = start1 - 1;
-        eY1 = start1;
+        // same 2px band as the editor's idd-e-top / idd-e-bottom line marker, so both meet without a step
+        sY1 = c.startLine1 === 0 ? start1 - 1 : start1 - 2;
+        eY1 = sY1 + 1;
       } else {
         sY1 = start1;
         eY1 = end1 - 1;
       }
       if (end2 - start2 < 2) {
-        sY2 = start2 - 1;
-        eY2 = start2;
+        // same 2px band as the editor's idd-e-top / idd-e-bottom line marker, so both meet without a step
+        sY2 = c.startLine2 === 0 ? start2 - 1 : start2 - 2;
+        eY2 = sY2 + 1;
       } else {
         sY2 = start2;
         eY2 = end2 - 1;
@@ -92,7 +94,7 @@ export class MergeDivider {
       const y1 = f.pos1 + top1;
       const y2 = f.pos2 + top2;
       if ((y1 < -20 && y2 < -20) || (y1 > height + 20 && y2 > height + 20)) continue;
-      parts.push(`<path d="${wavePath(width, y1, y2)}" fill="none" stroke="var(--idd-diff-separator-wave)" stroke-width="1"/>`);
+      parts.push(`<path d="${wavePath(width, y1, y2, rect.left)}" fill="none" stroke="var(--idd-diff-separator-wave)" stroke-width="1"/>`);
     }
 
     this.svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
@@ -100,13 +102,16 @@ export class MergeDivider {
   }
 }
 
-/** A wave (period 16px, amplitude 3px) whose baseline follows the divider curve from y1 to y2. */
-function wavePath(width: number, y1: number, y2: number): string {
+/**
+ * A wave (period 16px, amplitude 3px) whose baseline follows the divider curve from y1 to y2. `left` is the divider's
+ * viewport x: the phase is anchored to the viewport, like the editor waves (alignWaves), so they join seamlessly.
+ */
+function wavePath(width: number, y1: number, y2: number, left: number): string {
   const pts: string[] = [];
   for (let x = 0; x <= width; x += 1) {
     const t = x / width;
     const s = 3 * (1 - t) * t * t + t * t * t;
-    const y = y1 + (y2 - y1) * s - 3 * Math.cos((2 * Math.PI * x) / 16);
+    const y = y1 + (y2 - y1) * s - 3 * Math.cos((2 * Math.PI * (x + left)) / 16);
     pts.push(`${x === 0 ? 'M' : 'L'}${x} ${y.toFixed(2)}`);
   }
   return pts.join(' ');
