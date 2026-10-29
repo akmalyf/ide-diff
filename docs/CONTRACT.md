@@ -76,11 +76,4 @@ File layout in `packages/viewer/src/` (owner in parentheses — do not edit othe
 
 ## @ide-diff/react (`packages/react`) — `<DiffEditor/>`, `<MergeEditor/>` thin wrappers (react peerDependency).
 
-## ide-diff-vscode (`packages/vscode`) — VS Code extension
-Commands: "IDE Diff: Compare with Clipboard", "IDE Diff: Compare Selected Files" (explorer context, 2 files),
-"IDE Diff: Compare with HEAD" (SCM resource context, uses git extension API), "IDE Diff: Compare Active File With…".
-Opens a WebviewPanel bundling @ide-diff/viewer; edits on the modified side are written back to the file on save
-(Ctrl/Cmd+S in webview → postMessage). Theme follows VS Code (body.vscode-dark/light). Build with Vite (webview)
-+ esbuild-free `tsc` or Vite for the extension host (CJS output, `vscode` external). Package with `@vscode/vsce`.
-
 ## playground (`playground/`) — Vite app demonstrating all modes with PHP/JS samples and a control panel.
