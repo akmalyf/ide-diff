@@ -104,9 +104,7 @@ Until the packages are on npm, build tarballs and install them from files:
 
 ```bash
 pnpm install
-pnpm build
-mkdir -p vendor
-for p in core viewer react; do (cd packages/$p && pnpm pack --pack-destination ../../vendor); done
+pnpm pack:vendor   # builds all packages and writes vendor/ide-diff-{core,viewer,react}-<version>.tgz
 ```
 
 Copy the `vendor/*.tgz` files into your project and reference them in its `package.json` (npm syntax shown; with pnpm
